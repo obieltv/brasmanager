@@ -1,8 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { sql, query } from '@/lib/db';
+import { sql, query, initializeDb } from '@/lib/db';
 
 export async function GET(req: NextRequest) {
   try {
+    await initializeDb();
     const { searchParams } = new URL(req.url);
     const search = searchParams.get('search') || '';
     const categoria = searchParams.get('categoria') || '';

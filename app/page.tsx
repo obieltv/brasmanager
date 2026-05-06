@@ -52,13 +52,14 @@ export default function Dashboard() {
       try {
         const res = await fetch(`/api/fornecedores?${buildQuery(p)}`);
         const json = await res.json();
+        const data: Fornecedor[] = json.data ?? [];
         setFornecedores((prev) => {
-          const next = reset ? json.data : [...prev, ...json.data];
+          const next = reset ? data : [...prev, ...data];
           currentFornecedoresLen.current = next.length;
           return next;
         });
-        setTotal(json.total);
-        setHasMore(json.data.length === LIMIT && currentFornecedoresLen.current < json.total);
+        setTotal(json.total ?? 0);
+        setHasMore(data.length === LIMIT && currentFornecedoresLen.current < (json.total ?? 0));
       } finally {
         setLoading(false);
       }
