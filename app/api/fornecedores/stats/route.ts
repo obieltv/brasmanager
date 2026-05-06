@@ -1,8 +1,9 @@
 import { NextResponse } from 'next/server';
-import { sql } from '@/lib/db';
+import { sql, initializeDb } from '@/lib/db';
 
 export async function GET() {
   try {
+    await initializeDb();
     const [totais, mediaRow, porCategoria] = await Promise.all([
       sql`
         SELECT

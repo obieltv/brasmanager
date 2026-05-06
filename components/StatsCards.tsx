@@ -23,7 +23,7 @@ export function StatsCards() {
       .catch(console.error);
   }, []);
 
-  if (!stats) {
+  if (!stats || 'error' in stats) {
     return (
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
         {[...Array(4)].map((_, i) => (
