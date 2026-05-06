@@ -27,6 +27,15 @@ yarn-error.log*
 
 # local env files
 .env*.local
+.env
+
+# SQLite local
+*.db
+*.db-shm
+*.db-wal
+
+# uploads locais
+/public/uploads/
 
 # vercel
 .vercel
